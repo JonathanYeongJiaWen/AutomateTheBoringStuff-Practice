@@ -1,0 +1,16 @@
+
+
+def magic(list):
+    for item in list:
+        if item in list[:-2]:
+            print(item, end=', ')
+        elif item is list[-2]:
+            print(item, end=' and ')
+        else:
+            print(item)
+
+
+spam = ['apples', 'bananas', 'tofu', 'cats']
+names = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+magic(spam)
+magic(names)
