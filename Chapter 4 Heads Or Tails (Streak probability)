@@ -1,0 +1,30 @@
+
+import random
+numberOfStreaks = 0
+
+def hasstreak(lst, streaklength):
+    for i in range(len(lst) - streaklength):
+        if all(lst[i + j] == 'H' for j in range(streaklength)) or all(lst[i + j] == 'T' for j in range(streaklength)):
+            return True
+    return False
+
+def generateflips(n):
+    lst = []
+    for x in range(n):
+        if random.randint(0, 1) == 0:
+            lst.append('H')
+        else:
+            lst.append('T')
+    return lst
+
+streaklength = 6
+
+for a in range(10000):
+    # Code that creates a list of 100 'heads' or 'tails' values.
+    lst = generateflips(100)
+    # Code that checks if there is a streak of 6 heads or tails in a row.
+    if hasstreak(lst, streaklength):
+        numberOfStreaks += 1
+
+percentage = numberOfStreaks / 100
+print('Chance of streak:' + str(percentage) + '%')
