@@ -1,0 +1,46 @@
+#In this chapter, we used the dictionary value {'1h': 'bking', '6c': 'wqueen', '2g': 'bbishop', '5h': 'bqueen', '3e': 'wking'} to represent a chess board. 
+Write a function named isValidChessBoard() that takes a dictionary argument and returns True or False depending on if the board is valid.
+A valid board will have exactly one black king and exactly one white king. Each player can only have at most 16 pieces, at most 8 pawns, and all pieces must 
+be on a valid space from '1a' to '8h'; that is, a piece can’t be on space '9z'. The piece names begin with either a 'w' or 'b' to represent white or black, 
+followed by 'pawn', 'knight', 'bishop', 'rook', 'queen', or 'king'. This function should detect when a bug has resulted in an improper chess board.
+
+#Disclaimer: code takes into account that any piece can be at any square which should not be the case for pawns, knight, bishop. Might improve on this.
+
+def isavalidchessboard(game):
+        #16 pieces per colour (W/B)
+        #(8 pawns only, 2 knight, 2 rook, 2 bishop, 1 queen, 1 king per side)
+        #1a to 8h (64 positions), no duplicate positions, can duplicate pieces
+        alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+        numbers = ['1', '2', '3', '4', '5', '6', '7', '8']
+        pieces = ['king', 'queen', 'rook', 'knight', 'bishop', 'pawn']
+        players = ['w', 'b']
+        positions = [n + a for n in numbers for a in alphabets]
+        gamepieces = [p + x for p in players for x in pieces]
+        countposition = {}
+        countgamepieces = {}
+
+        game = game.strip('{}')
+        gameitems = game.split(', ') #creates a list where each indiv item in the dict is an item in the list
+        print(gameitems)
+
+        for piece in gameitems:
+                a, b = piece.split(': ')
+                if a not in positions:
+                        print('Provide a valid chess position.')
+                        return False
+                elif b not in gamepieces:
+                        print('Provide a valid chess piece.')
+                        return False
+
+                countposition.setdefault(a, 0)
+                countposition[a] += 1
+                if countposition[a] > 1:
+                        print('There can only be 1 chess piece per position.')
+                        print(countposition)
+                        return False
+        return True
+
+game = input('Enter a valid chess game (eg: {1h: bking, 6c: wqueen, 2g: bbishop, 5h: bqueen, 3e: wking}): ')
+gamevalid = isavalidchessboard(game)
+if gamevalid:
+        print('The game is valid!!!!')
