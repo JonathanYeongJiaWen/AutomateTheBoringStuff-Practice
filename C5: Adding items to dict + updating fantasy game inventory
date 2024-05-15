@@ -1,0 +1,29 @@
+
+def displayInventory(inventory):
+    print('Inventory: ')
+    #swap keys and values positions from a dictionary, then print as a string, new line per item,
+    #print accoridng to quesiton format Q Item
+    for item, quantity in inventory2.items():
+        print(str(quantity) + ' ' + item)
+    #print total n.o of items
+    print('Total number of items: ' + str(sum(inventory2.values())))
+
+def addtoinventory(addeditems):
+    lst2 = addeditems.split(', ')
+    for item2 in lst2:
+        itemname = item2.strip()
+        if itemname in inventory2:
+            inventory2[itemname] += 1
+        else:
+            inventory2[itemname] = 1
+
+inventory1 = input('Enter your inventory, eg. rope: 1, torch: 6, gold coin: 42, dagger: 1, arrow: 12: ')
+addeditems = input('Enter your extra items in the following format: gold coin, dagger, gold coin, gold coin, ruby: ')
+inventory2 = {}
+lst = inventory1.split(', ')
+for things in lst:
+    a, b = things.split(': ')
+    inventory2[a.strip()] = int(b)
+print(inventory2)
+addtoinventory(addeditems)
+displayInventory(inventory1)
