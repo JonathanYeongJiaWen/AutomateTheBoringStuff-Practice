@@ -1,0 +1,16 @@
+
+def displayInventory(inventory):
+    print('Inventory: ')
+    #swap keys and values positions from a dicitonary, then print as a string, new line per item,
+    lst = inventory.split(', ')
+    c = 0
+    for things in lst:
+        a, b = things.split(': ')
+        print(b + ' ' + a)
+        c += int(b)
+    #print total n.o of items
+    print('Total number of items: ' + str(c) )
+
+
+inventory = input('Enter your inventory, eg. rope: 1, torch: 6, gold coin: 42, dagger: 1, arrow: 12: ')
+displayInventory(inventory)
