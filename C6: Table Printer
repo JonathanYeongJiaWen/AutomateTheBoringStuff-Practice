@@ -1,0 +1,42 @@
+#https://automatetheboringstuff.com/2e/chapter6/
+
+tableData = [['apples', 'oranges', 'cherries', 'banana'],
+             ['Alice', 'Bob', 'Carol', 'David'],
+             ['dogs', 'cats', 'moose', 'goose']]
+
+Your printTable() function would print the following:
+
+   apples Alice  dogs
+  oranges   Bob  cats
+ cherries Carol moose
+   banana David goose
+tableData = [['apples', 'oranges', 'cherries', 'banana'],
+             ['Alice', 'Bob', 'Carol', 'David'],
+             ['dogs', 'cats', 'moose', 'goose']]
+
+def printtable(table):
+    numrows = len(table[0])
+    numcols = len(table)
+    #finding max column widths
+    #original
+    '''colwidths = [0] * len(table)
+    for i in table:
+        for a in i:
+            if len(a) > len(i[i.index(a)-1]):
+                colwidths[table.index(i)] = len(a)
+            else:
+                colwidths[table.index(i)] = len(i[i.index(a) - 1])'''
+    #chatgpt proposed code to find max coldwidth
+    colwidths = [max(len(x) for x in column) for column in table]
+    #printing rows and columns
+    for x in range(numrows):  # 4
+        for y in range(numcols): #3
+            print(table[y][x].rjust(colwidths[y]), end=' ')
+        print()
+    print(colwidths)
+
+
+
+printtable(tableData)
+
+
