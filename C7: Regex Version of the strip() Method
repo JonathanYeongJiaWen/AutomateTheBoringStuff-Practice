@@ -1,0 +1,16 @@
+import re
+
+#strip() of whitespace if 1 arg / strip of 2nd arg
+
+def stripregex(string, chars=None):
+    if chars is None:
+        x = re.compile(r'^\s+|\s+$')
+    else:
+        y = re.escape(chars)
+        x = re.compile(f'^[{y}]+|[{y}]+$')
+
+    z = x.sub('',string)
+    print(z)
+
+example = '***hello***'
+stripregex(example,'***')
