@@ -1,0 +1,41 @@
+import pyinputplus
+
+def sandwichmaker():
+    totalprice = []
+    breadtype = pyinputplus.inputMenu(['wheat', 'white', 'sourdough'], lettered=True)
+    breadprice = {
+        'wheat': 1,
+        'white': 0.5,
+        'sourdough': 2
+    }
+    totalprice.append(breadprice[breadtype])
+    print(totalprice)
+    proteintype = pyinputplus.inputMenu(['chicken', 'turkey', 'ham', 'tofu'], lettered=True)
+    proteinprice = {
+        'chicken': 3,
+        'turkey': 3,
+        'ham': 1.5,
+        'tofu': 1
+    }
+    totalprice.append(proteinprice[proteintype])
+    print(totalprice)
+    cheese = pyinputplus.inputYesNo('Do you want cheese?')
+    if cheese == 'yes':
+        cheesetype = pyinputplus.inputMenu(['mozarella', 'cheddar', 'swiss'], lettered=True)
+        cheeseprice = {
+            'mozarella': 3.85,
+            'cheddar': 5.45,
+            'swiss': 5.45
+        }
+        totalprice.append(cheeseprice[cheesetype])
+        print(totalprice)
+    toppings = pyinputplus.inputYesNo('Do you want mayo, mustard, lettuce, or tomato?')
+    quantity = pyinputplus.inputNum('How many sandwiches do you want?', min=1)
+    x = 0
+    for i in totalprice:
+        x += i
+    print(x)
+    y = x * quantity
+    print(f'The total price is ${y}.')
+
+sandwichmaker()
