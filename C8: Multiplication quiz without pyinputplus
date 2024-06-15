@@ -1,0 +1,44 @@
+import random, time
+
+def multiplicationquiz():
+    score = 0
+    for i in range(10):
+        num1 = random.randint(0, 9)
+        num2 = random.randint(0, 9)
+        x = num1 * num2
+        try:
+            response = int(input(f'Q{i+1}. Enter the value of {num1} * {num2}: '))
+        except ValueError:
+            print('Invalid input. Please enter an integer.')
+            response = -1
+
+        if response == x:
+            print('You are right!')
+            score += 1
+            time.sleep(1)
+            continue
+        else:
+            print('Incorrect. You have 3 more tries.')
+            for i in range(3):
+                try:
+                    response = int(input(f'Enter the value of {num1} * {num2}: '))
+                except ValueError:
+                    print('Invalid input. Please enter an integer.')
+                    response = -1
+                if response == x:
+                    print('You are right!')
+                    time.sleep(1)
+                    score += 1
+                    break
+                else:
+                    tries = 2-i
+                    if tries > 0:
+                        print(f'Incorrect. You have {tries} more tries.')
+                    else:
+                        print(f'Incorrect. The answer is {x}.')
+                        print('GGWP.')
+                        return
+            continue
+    print(f'Congratz you scored {score}/10!')
+
+multiplicationquiz()
